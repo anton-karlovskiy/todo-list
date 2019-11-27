@@ -1,12 +1,12 @@
 
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import './Todo.css';
 
 const Todo = ({ todo, removeTodo }) => {
-  const onRemoveHandler = () => {
+  const onRemoveHandler = useCallback(() => {
     removeTodo(todo.id);
-  };
+  }, [todo, removeTodo]);
 
   return (
     <div className='todo'>

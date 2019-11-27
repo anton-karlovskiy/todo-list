@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Todo from './components/Todo/Todo';
 import TodoForm from './components/TodoForm/TodoForm';
@@ -21,16 +21,16 @@ const App = () => {
     }
   ]);
 
-  const addTodoHandler = text => {
+  const addTodoHandler = useCallback(text => {
     const id = Math.random().toString();
     const newTodos = [...todos, { text, id }];
     setTodos(newTodos);
-  };
-
-  const removeTodoHandler = id => {
+  }, [todos]);
+  
+  const removeTodoHandler = useCallback(id => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
-  };
+  }, [todos]);
 
   return (
     <div className='app'>
