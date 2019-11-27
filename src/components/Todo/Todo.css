@@ -1,0 +1,12 @@
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: 12px;
+  margin-bottom: 6px;
+}

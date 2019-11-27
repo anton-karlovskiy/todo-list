@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
+
+import Todo from './components/Todo/Todo';
+import TodoForm from './components/TodoForm/TodoForm';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([
+    {
+      id: '1',
+      text: 'BMW'
+    },
+    {
+      id: '2',
+      text: 'Audi'
+    },
+    {
+      id: '3',
+      text: 'Siemens'
+    }
+  ]);
+
+  const addTodoHandler = text => {
+    const id = Math.random().toString();
+    const newTodos = [...todos, { text, id }];
+    setTodos(newTodos);
+  };
+
+  const removeTodoHandler = id => {
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className='todo-list'>
+        { todos.map(todo => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            removeTodo={removeTodoHandler} />
+        )) }
+        <TodoForm addTodo={addTodoHandler} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
